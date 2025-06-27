@@ -5,7 +5,7 @@ let userResponses = {};
 let fileName = "";
 
 // Carica il quiz.json
-fetch('quiz.json')
+fetch('./quiz/quiz.json')
     .then(response => response.json())
     .then(data => {
         quizData = data;
