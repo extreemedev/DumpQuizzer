@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1300px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#settings-container {
+    margin: 20px;
+    
+}
+
+#main-container {
+    
+}
+
+#quiz-container {
+    margin-top: 20px;
+}
+
+#results-container {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto; /* Scorrimento verticale */
+}
+
+#submit-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#submit-btn:hover {
+    background-color: #218838;
+}
+
+#slider {
+    
+    
+    accent-color: rgb(238,174,202);
+    /*-webkit-appearance: none;*/
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    color: #BE93C5;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button {
+    display: block;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Stili per il feedback delle risposte */
+.correct {
+    outline: 3px solid #28a745; /* Verde per le risposte corrette */
+}
+
+.incorrect {
+    outline: 3px solid #dc3545; /* Rosso per le risposte sbagliate */
+}
+
+/* Risposta corretta: sfondo verde */
+.correct-answer {
+    background-color: #28a745;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Risposta sbagliata: sfondo rosso */
+.wrong-answer {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Per visualizzare le risposte corrette, non selezionate dall'utente */
+.correct-answer-outline {
+    border: 2px solid #28a745;
+    padding: 5px;
+    border-radius: 5px;
+}

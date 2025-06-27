@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Manager</h1>
+        
+        <!-- Container per le impostazioni del quiz -->
+        <div id="settings-container">
+            <h3>Imposta il tuo quiz</h3>
+
+            <label for="slider">Numero di domande:</label>
+            <input type="range" id="slider" min="1" max="50" value="10" oninput="updateSliderValue(this.value)">
+            <span id="slider-value">10</span>
+            <br><br>
+            <button id="generate-btn" class="btn-grad" onclick="generateQuiz()">Genera Quiz</button>
+            <button id="submit-btn" class="btn-grad" onclick="submitQuiz()">Submit</button>
+            <button id="restart-btn" class="btn-grad" style="display:none;" onclick="location.reload()">Restart</button>
+        </div>
+        
+    </div>
+
+    <div class="container" id="main-container" style="display:none;">
+        
+        <!-- Container per le domande del quiz -->
+        <div id="quiz-container"></div>
+
+        <!-- Container per le domande con le risposte colorate -->
+        <div id="results-container" style="display:none;"></div>
+
+        <!-- Risultati del Quiz -->
+        <div id="results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
