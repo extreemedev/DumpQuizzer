@@ -4,6 +4,7 @@ let currentQuestionIndex = 0;
 let userResponses = {};
 let fileName = "";
 
+
 // Carica il quiz.json
 fetch('./quiz/quiz.json')
     .then(response => response.json())

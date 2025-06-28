@@ -5,7 +5,10 @@
 body {
     font-family: 'Arial', sans-serif;
     background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    /*background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);*/
+    /*background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(202,248,255,1) 0%, rgba(186,204,227,1) 51.2%, rgba(117,144,179,1) 100.1% );*/
+    /*background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(202,248,255,1) 0%, rgba(186,204,227,1) 51.2%, rgba(117,144,179,1) 100.1% );*/
+    background-image: linear-gradient( 180deg,  rgba(69,150,164,1) 2.5%, rgba(17,20,34,1) 100.3% );
     margin: 0;
     padding: 20px;
     display: flex;
@@ -67,7 +70,7 @@ h1 {
 #slider {
     
     
-    accent-color: rgb(238,174,202);
+    accent-color:rgba(69,150,164,1);
     /*-webkit-appearance: none;*/
     width: 100%;
     height: 15px;

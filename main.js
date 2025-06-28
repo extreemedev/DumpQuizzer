@@ -1,19 +1,21 @@
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 1300,
     height: 650,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      enableRemoteModule: true,
-      sandbox: false // Disabilita la sandbox per abilitare l'esecuzione degli script
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: false,
+      contextIsolation: true
     }
-  })
+  });
 
-  win.loadFile('index.html')
-  win.webContents.openDevTools()
-}
+  win.loadFile("index.html");
+  win.webContents.openDevTools();
 
-app.whenReady().then(createWindow)
+  require("./scripts/ipcHandlers").setupHandlers(win);
+};
+
+app.whenReady().then(createWindow);
