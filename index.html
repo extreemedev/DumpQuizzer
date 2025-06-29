@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div style="position:fixed;top:10px;right:20px;z-index:1000;">
+        <span id="ia-status-dot" style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#aaa;vertical-align:middle;margin-right:6px;"></span>
+        <span id="ia-status-label">IA: Checking...</span>
+    </div>
     <div class="container">
         <h1>DumpQuizzer</h1>
         
@@ -48,6 +52,7 @@
     <script src="./scripts/quiz-gen.js"></script>
     <script src="./scripts/pdf-import.js"></script>
     <script src="./scripts/quiz-list.js"></script>
+    <script src="./scripts/ia-health.js"></script>
 
 </body>
 </html>

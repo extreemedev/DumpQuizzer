@@ -31,22 +31,37 @@ let ollamaProcess = null;
 function startOllama() {
   let binPath;
   if (os.platform() === 'win32') {
-    binPath = path.join(__dirname, 'ollama-bin', 'ollama-win.exe');
+    binPath = path.join(__dirname, 'ollama', 'ollama-win.exe');
   } else if (os.platform() === 'darwin') {
-    binPath = path.join(__dirname, 'ollama-bin', 'ollama-mac');
+    binPath = path.join(__dirname, 'ollama', 'ollama-mac');
   } else {
-    binPath = path.join(__dirname, 'ollama-bin', 'ollama-linux');
+    binPath = path.join(__dirname, 'ollama', 'ollama-linux');
   }
   if (!fs.existsSync(binPath)) {
     console.error('Ollama binary not found:', binPath);
     return;
   }
-  ollamaProcess = spawn(binPath, [], {
+
+
+  //ollamaProcess = spawn(binPath, ['run', 'mistral:7b'], {
+  ollamaProcess = spawn(binPath, ['serve'], {
     detached: true,
-    stdio: 'ignore'
+    //stdio: 'inherit'
+    stdio: ['ignore', 'pipe', 'pipe']
   });
-  ollamaProcess.unref();
+  //ollamaProcess.unref();
   console.log('Ollama started:', binPath);
+
+  if (ollamaProcess.stdout) {
+    ollamaProcess.stdout.on('data', (data) => {
+      console.log(`[Ollama STDOUT]: ${data}`);
+    });
+  }
+  if (ollamaProcess.stderr) {
+    ollamaProcess.stderr.on('data', (data) => {
+      console.error(`[Ollama STDERR]: ${data}`);
+    });
+  }
 }
 
 function downloadOllamaModel(modelName = 'mistral:7b') {

@@ -16,5 +16,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   loadQuiz: async (filename) => {
     return await ipcRenderer.invoke("load-quiz", filename);
+  },
+
+  ollamaHealth: async () => {
+    return await window.electronAPI ? await window.electronAPI.invoke('ollama-health') : { status: 'error' };
   }
 });

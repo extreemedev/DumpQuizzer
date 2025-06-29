@@ -1,7 +1,7 @@
 async function loadQuizList() {
     if (window.electronAPI && window.electronAPI.listQuizzes) {
         const quizzes = await window.electronAPI.listQuizzes();
-        console.log('Quiz trovati:', quizzes);
+        //console.log('Quiz trovati:', quizzes);
         const selector = document.getElementById('quiz-selector');
         selector.innerHTML = '';
         if (quizzes && quizzes.length > 0) {

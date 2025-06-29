@@ -6,22 +6,36 @@ The main goal is to provide a simple and functional interface to simulate tests,
 
 ---
 
-## Ollama Model Storage
+## Ollama Prerequisites and Distribution Notes
 
-When your application downloads a model using Ollama (for example, `mistral:7b`), the model file is automatically saved by Ollama in its default models directory.
+To use the embedded LLM features (PDF to quiz conversion), the following requirements must be met on the target system:
 
-### Default model path
+### 1. Ollama Binary
+- The correct Ollama binary for your OS must be present in the `ollama/` folder (e.g. `ollama-win.exe`, `ollama-linux`, `ollama-mac`).
 
-- **Windows:**
-  - `C:\Users\<username>\.ollama\models`
-- **Linux/Mac:**
-  - `/home/<username>/.ollama/models` or `/Users/<username>/.ollama/models`
+### 2. System Dependencies
+- **Windows:** Usually works out-of-the-box, but some systems may require the latest Visual C++ Redistributable.
+- **Linux:** Requires standard libraries like `libc`, `libstdc++`, etc. (usually already present on most distributions).
+- **Mac:** Requires macOS 12 or newer.
 
-This location is managed internally by Ollama and **cannot be changed** via API or parameters.
+### 3. Model Download
+- The first time you use the app, Ollama will automatically download the required model (e.g. `mistral:7b`) to the user's `.ollama/models` directory. This requires an internet connection on first use.
 
-### Important notes
-- You do not need to manually move model files.
-- If you distribute the app to other computers, the model will be automatically downloaded to the above folder on first launch.
-- If you want to save disk space, you can delete unused models directly from this folder.
+### 4. Permissions
+- The Ollama binary must have execution permissions.
+- On Windows, SmartScreen or antivirus may block the executable; allow it if prompted.
+
+### 5. Free Port
+- Ollama must be able to bind to port `11434` (default).
+
+### 6. No Need for Python, Docker, or Node.js (for Ollama)
+- Ollama is a native binary and does not require Python, Docker, or Node.js to run.
+
+### Troubleshooting
+- If the IA status is "Not Ready":
+  - Make sure Ollama is running (check Task Manager or Activity Monitor).
+  - Make sure port 11434 is not blocked by a firewall or used by another process.
+  - Try running the Ollama binary manually to check for missing dependencies or error messages.
+  - Ensure you have an internet connection for the first model download.
 
 For more details, see the official Ollama documentation: https://ollama.com/

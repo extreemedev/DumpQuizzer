@@ -54,20 +54,23 @@ function setupHandlers(win) {
 
       // Prompt a Ollama
       const prompt = getQuizPrompt(pdfText);
+      console.log('[Ollama] Chiamata API /api/generate con modello mistral:7b');
       const ollamaRes = await fetch(ollamaEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'llama3.1:8b', // o il modello che preferisci
+          model: 'mistral:7b', // usa il modello scaricato
           prompt,
           stream: false
         })
       });
-      const ollamaJson = await ollamaRes.json();
+      console.log('[Ollama] Status:', ollamaRes.status, ollamaRes.statusText);
+      const ollamaText = await ollamaRes.text();
+      console.log('[Ollama] Response body:', ollamaText);
       let quizJson;
       try {
         // Cerca il primo oggetto JSON valido nella risposta
-        const match = ollamaJson.response.match(/\{[\s\S]*\}/);
+        const match = ollamaText.match(/\{[\s\S]*\}/);
         quizJson = JSON.parse(match[0]);
       } catch (e) {
         return { canceled: false, error: 'Errore parsing JSON dal LLM' };
@@ -80,6 +83,7 @@ function setupHandlers(win) {
 
       return { canceled: false, pdfPath: pdfPath, quizFile: quizFileName };
     } catch (error) {
+      console.error('[Ollama] Errore:', error);
       return { canceled: false, error: error.message };
     }
   });
@@ -104,6 +108,17 @@ function setupHandlers(win) {
       return JSON.parse(content);
     } catch (error) {
       return null;
+    }
+  });
+
+  // Ollama health check
+  ipcMain.handle('ollama-health', async () => {
+    try {
+      const res = await fetch('http://localhost:11434/api/tags');
+      if (res.ok) return { status: 'ready' };
+      return { status: 'error' };
+    } catch (e) {
+      return { status: 'error' };
     }
   });
 }
