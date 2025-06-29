@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Manager</title>
+    <title>DumpQuizzer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Quiz Manager</h1>
+        <h1>DumpQuizzer</h1>
         
         <!-- Container per le impostazioni del quiz -->
         <div id="settings-container">
             <h3>Imposta il tuo quiz</h3>
+
+            <div id="quiz-list-box" style="margin-top:20px; padding:10px; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
+                <strong>Quiz disponibili:</strong>
+                <select id="quiz-selector" style="width:100%;margin-top:8px;"></select>
+            </div>
 
             <label for="slider">Numero di domande:</label>
             <input type="range" id="slider" min="1" max="50" value="10" oninput="updateSliderValue(this.value)">
             <span id="slider-value">10</span>
             <br><br>
             <button id="import-btn" class="btn-grad">Importa PDF</button>
+            <input type="file" id="pdf-input" accept="application/pdf" style="display:none;">
             <button id="generate-btn" class="btn-grad" onclick="generateQuiz()">Genera Quiz</button>
             <button id="submit-btn" class="btn-grad" onclick="submitQuiz()">Submit</button>
             <button id="restart-btn" class="btn-grad" style="display:none;" onclick="location.reload()">Restart</button>
+            
         </div>
     </div>
 
-    <div class="container">
-    <h3>Quiz disponibili:</h3>
-        <div id="quiz-list"></div>
-    </div>
 
     <div class="container" id="main-container" style="display:none;">
         
@@ -42,8 +45,9 @@
         <div id="results"></div>
     </div>
 
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/renderer.js"></script>
+    <script src="./scripts/quiz-gen.js"></script>
+    <script src="./scripts/pdf-import.js"></script>
+    <script src="./scripts/quiz-list.js"></script>
 
 </body>
 </html>

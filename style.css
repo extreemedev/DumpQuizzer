@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: rgb(238,174,202);
+    background: rgba(69,150,164,1);
     /*background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);*/
     /*background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(202,248,255,1) 0%, rgba(186,204,227,1) 51.2%, rgba(117,144,179,1) 100.1% );*/
     /*background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(202,248,255,1) 0%, rgba(186,204,227,1) 51.2%, rgba(117,144,179,1) 100.1% );*/
@@ -19,7 +19,7 @@ body {
 
 .container {
     max-width: 1300px;
-    background-color: #fff;
+    background-color: #cacaca;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -36,9 +36,6 @@ h1 {
     
 }
 
-#main-container {
-    
-}
 
 #quiz-container {
     margin-top: 20px;
@@ -53,10 +50,10 @@ h1 {
 #submit-btn {
     display: block;
     margin-top: 10px;
-    padding: 10px 30px;
+    padding: 5px 10px;
     font-size: 18px;
     color: #fff;
-    background-color: #28a745;
+    background-color: #185f29;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -64,12 +61,10 @@ h1 {
 }
 
 #submit-btn:hover {
-    background-color: #218838;
+    background-color: #228d39;
 }
 
-#slider {
-    
-    
+#slider { 
     accent-color:rgba(69,150,164,1);
     /*-webkit-appearance: none;*/
     width: 100%;
@@ -96,10 +91,10 @@ label {
 
 button {
     display: block;
-    padding: 10px 20px;
+    padding: 5px 10px;
     margin: 10px 5px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: rgb(35, 88, 97);
     color: white;
     border: none;
     border-radius: 5px;
@@ -107,7 +102,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgb(39, 152, 172);
 }
 
 /* Stili per il feedback delle risposte */

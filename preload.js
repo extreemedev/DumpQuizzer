@@ -7,7 +7,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     const result = await ipcRenderer.invoke("import-pdf");
     if (result.canceled) return { success: false };
     if (result.error) return { success: false, error: result.error };
-    return { success: true, jsonPath: result.jsonPath };
+    return { success: true, pdfPath: result.pdfPath }; // <-- usa pdfPath
   },
 
   listQuizzes: async () => {
