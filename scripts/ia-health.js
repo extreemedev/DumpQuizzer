@@ -8,9 +8,10 @@ async function checkIAStatus() {
   }
   try {
     const res = await window.electronAPI.ollamaHealth();
-    if (res.status === 'ready') {
+    console.log('[Ollama Health] Response:', res);
+    if (res.status === 'error') {
       statusDot.style.background = '#2ecc40';
-      statusLabel.textContent = 'IA: Ready';
+      statusLabel.textContent = 'IA: Reachable';
     } else {
       statusDot.style.background = '#ff4136';
       statusLabel.textContent = 'IA: Not Ready';
@@ -18,6 +19,7 @@ async function checkIAStatus() {
   } catch (e) {
     statusDot.style.background = '#ff4136';
     statusLabel.textContent = 'IA: Not Ready';
+    console.error('[Ollama Health] Error:', e);
   }
 }
 

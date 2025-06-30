@@ -54,12 +54,16 @@ function startOllama() {
 
   if (ollamaProcess.stdout) {
     ollamaProcess.stdout.on('data', (data) => {
-      console.log(`[Ollama STDOUT]: ${data}`);
+      const msg = `[Ollama STDOUT]: ${data}`;
+      console.log(msg);
+      logOllamaToFile(msg);
     });
   }
   if (ollamaProcess.stderr) {
     ollamaProcess.stderr.on('data', (data) => {
-      console.error(`[Ollama STDERR]: ${data}`);
+      const msg = `[Ollama STDERR]: ${data}`;
+      console.error(msg);
+      logOllamaToFile(msg);
     });
   }
 }
@@ -91,6 +95,21 @@ function downloadOllamaModel(modelName = 'mistral:7b') {
   });
   req.write(data);
   req.end();
+}
+
+// Funzione per loggare anche su file
+function logOllamaToFile(msg) {
+  const now = new Date();
+  const pad = n => n.toString().padStart(2, '0');
+  const y = now.getFullYear();
+  const m = pad(now.getMonth() + 1);
+  const d = pad(now.getDate());
+  const h = pad(now.getHours());
+  const logsDir = path.join(__dirname, 'logs');
+  if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir);
+  const logFile = path.join(logsDir, `ollama_${y}_${m}_${d}_${h}00.log`);
+  const line = `[${now.toISOString()}] ${msg}\n`;
+  fs.appendFileSync(logFile, line, 'utf-8');
 }
 
 app.whenReady().then(() => {
